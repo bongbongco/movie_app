@@ -30,18 +30,28 @@ class App extends Component {
 // Render: componentWillMount() -> render() -> componentDidMount
 // Update: componentWillReceiveProps() -> shouldComponentUpdate() -> componentWillupdate() -> render() -> componentDidUpdate()
 
+  state = {
+    greeting: "Hello!"
+  }
+
   componentWillMount() {
     console.log("will mount")
   }
 
   componentDidMount() {
     console.log("did mount")
+    setTimeout(() => {
+      this.setState({
+        greeting: "Hello again!"
+      })
+    }, 5000)
   }
 
   render() {
     console.log("did render")
     return (
       <div className="App">
+      {this.state.greeting}
         {movies.map((movie, index) => {
           return (
             <Movie title={movie.title} poster={movie.poster} key={index} />
